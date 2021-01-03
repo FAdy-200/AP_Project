@@ -33,12 +33,11 @@ class DashBoardFileInput:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            self.__set_flags(event)
+        self.__set_flags()
 
-    def __set_flags(self, event):
+    def __set_flags(self):
         """
         Change all the required flags to be used in the render function
-        :param event:
         :return:
         """
         pass
