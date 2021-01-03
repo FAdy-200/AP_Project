@@ -24,6 +24,7 @@ class DashBoardUserInput:
         self.signal_left_flag = False
         self.signal_right_flag = False
         self.seat_belt_flag = False
+        self.acceleration = 0
         self.big_arrow_angle = 0
         self.small_arrow_angle = 0
 
