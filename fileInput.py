@@ -39,11 +39,12 @@ class DashBoardFileInput:
     def __set_flags(self):
         """
         Change all the required flags to be used in the render function
-        :return:
+        :return: It just put a name for evey col
         """
-        while self.i < 100:
+        while self.i <= 100:
             acc = self.data['Acceleration'][self.i]  #number not flag
             fuel = self.data['Fuel'][self.i] #number not flag
+            velo = self.data['Velocity'][self.i] #number not flag Velocity = U + a*t 
             self.battery_flag = self.data['Battery'][self.i]
             self.seat_belt_flag = self.data['Set Belt'][self.i]
             self.flasher_flag = self.data['Alart'][self.i]
@@ -59,7 +60,7 @@ class DashBoardFileInput:
         renders needed images based on the input
         :return:
         """
-        if self.battery_flag:
+        while self.battery_flag:
                 self.screen.blit(self.battery , (0,0))
             if self.seat_belt_flag:
                 self.screen.blit(self.seat_belt, (0,0))
@@ -77,7 +78,7 @@ class DashBoardFileInput:
     def __check_for_warning(self):
         
         MY JOB LEAVE IT ALONE
-        :return:
+        :return: Ok! 
         """
         pass
 
