@@ -10,8 +10,8 @@ class DashBoardFileInput:
         self.width, self.height = self.bg.get_size()
         self.screen = pygame.display.set_mode((self.width, self.height))  # screen to render thing into
         self.battery = pygame.image.load("Data/Battery.png")
-        self.big_arrow = pygame.image.load("Data/Big_Arrow.png")
-        self.small_arrow = pygame.image.load("Data/Small_Arrow.png")
+        self.big_arrow = pygame.image.load("Data/Big_Arrow.png") #Speed
+        self.small_arrow = pygame.image.load("Data/Small_Arrow.png") #Fuel?
         self.brakes = pygame.image.load("Data/Brakes.png")
         self.engine = pygame.image.load("Data/Engine.png")
         self.flasher = pygame.image.load("Data/Flasher.png")
@@ -28,7 +28,10 @@ class DashBoardFileInput:
         self.seat_belt_flag = False
         self.big_arrow_angle = 0
         self.small_arrow_angle = 0
-        self.data = pd.read_excel('data.xlsx')  # put the file in the Data directory and access it here
+        self.data = pd.read_excel('Data/data.xlsx')  # put the file in the Data directory and access it here
+        self.max_velocity = self.data['Velocity'].max() #getting max. value of velocity col as a length of the speed 
+        self.data['angular'] = (self.data['Vecoity'] * 254) / self.max_velocity #Creating new col named angular 
+      
 
     def __check_for_events(self):
         for event in pygame.event.get():
@@ -45,6 +48,8 @@ class DashBoardFileInput:
             acc = self.data['Acceleration'][self.i]  #number not flag
             fuel = self.data['Fuel'][self.i] #number not flag
             velo = self.data['Velocity'][self.i] #number not flag Velocity = U + a*t 
+            self.angular = self.data['angular'][self.i]
+            angle = 127 - self.angular if self.angular < 127 else 127 + self.angular  #127 - angle --> Left other ---> Right
             self.battery_flag = self.data['Battery'][self.i]
             self.seat_belt_flag = self.data['Set Belt'][self.i]
             self.flasher_flag = self.data['Alart'][self.i]
@@ -60,8 +65,9 @@ class DashBoardFileInput:
         renders needed images based on the input
         :return:
         """
-        while self.battery_flag:
+        if self.battery_flag:
                 self.screen.blit(self.battery , (0,0))
+                #self.screen.blit(self.big_arrow, (0,0))
             if self.seat_belt_flag:
                 self.screen.blit(self.seat_belt, (0,0))
             if self.flasher_flag:
@@ -72,6 +78,7 @@ class DashBoardFileInput:
                 self.screen.blit( self.signal_left, (0,0))
             if self.signal_right_flag:
                 self.screen.blit(self.signal_right , (0,0))
+           
             self.i += 1
       
             
