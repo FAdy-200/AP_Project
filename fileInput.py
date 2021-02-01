@@ -18,7 +18,7 @@ class DashBoardFileInput:
         self.battery = pygame.image.load("Data/Battery.png") #battery flag image
         self.big_arrow = pygame.image.load("Data/Big_Arrow.png") #Speed rotating arrow 
         self.small_arrow = pygame.image.load("Data/Small_Arrow.png") #Fuel rotating arrow
-        self.brakes = pygame.image.load("Data/Brakes.png") #Brakes alert image
+        #self.brakes = pygame.image.load("Data/Brakes.png") #Brakes alert image
         self.engine = pygame.image.load("Data/Engine.png") #Engine alert image
         self.flasher = pygame.image.load("Data/Flasher.png") #Flasher indicator image 
         self.signal_right = pygame.image.load("Data/RightArrow.png") #give a signal to move right
