@@ -83,7 +83,7 @@ class DashBoardFileInput:
       
             
     def __check_for_warning(self):
-        
+        """
         MY JOB LEAVE IT ALONE
         :return: Ok! 
         """
