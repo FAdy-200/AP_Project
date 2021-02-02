@@ -89,9 +89,17 @@ class DashBoard:
             pygame.display.flip()
 
     def __user_Input(self):
+        """
+        Starting the User input mode
+        :return:
+        """
         self.__set_Data_based_on_Input()
 
     def __init_file_input(self):
+        """
+        initializing the needed variables for the file input mode
+        :return:
+        """
         if self.data is None:
             self.data = pd.read_csv('Data/sensor_data.csv', low_memory=False)  # accessing the data
             self.max_velocity = self.data[
@@ -99,10 +107,18 @@ class DashBoard:
             self.data['angular'] = (self.data['Velocity'] * -254) / self.max_velocity  # Creating new col named angular
 
     def __file_Input(self):
+        """
+        starting the file input mode
+        :return:
+        """
         self.__init_file_input()
         self.__set_Data_based_on_File()
 
     def __set_Data_based_on_File(self):
+        """
+        changing the flags based on the data in the file
+        :return:
+        """
         if self.index_in_DF <= len(self.data):
             self.acceleration.append(self.data['Acceleration'][self.index_in_DF])  # number not flag
             self.small_arrow_angle2 = self.data['Fuel'][self.index_in_DF] * ((37 * 2) / 100) - 37  # number not flag
@@ -267,6 +283,10 @@ class DashBoard:
             self.__flash_warning_sign()
 
     def start(self):
+        """
+        starting the dashboard and choosing the mode
+        :return:
+        """
         engine = self.__choosing_screen()
         while True:
             engine()
