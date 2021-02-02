@@ -35,6 +35,7 @@ class DashBoard:
         self.pivot_small_arrow2 = [431, 398]
         self.pivot_big_arrow1 = [150, 509]
         self.pivot_big_arrow2 = [600, 508]
+        self.max_sample_len = 100
 
         '''
         initializing flags
@@ -114,14 +115,15 @@ class DashBoard:
 
     def __set_Data_based_on_File(self):
         """
-        changing the flags based on the data in the file
+        changing the flags and angles based on the data in the file to be used in the render function
         :return:
         """
         if self.index_in_DF <= len(self.data):
-            self.acceleration.append(self.data['Acceleration'][self.index_in_DF])  # number not flag
-            self.small_arrow_angle2 = self.data['Fuel'][self.index_in_DF] * ((37 * 2) / 100) - 37  # number not flag
+            self.acceleration.append(self.data['Acceleration'][self.index_in_DF])
+            # scaling the values to work in the angle range of the arrows
+            self.small_arrow_angle2 = self.data['Fuel'][self.index_in_DF] * ((37 * 2) / 100) - 37
             self.angular_data = self.data['angular'][self.index_in_DF]
-            self.big_arrow_angle = -127 - self.angular_data if self.angular_data < 127 else - 127 + self.angular_data  # 127 - angle --> Left other ---> Right
+            self.big_arrow_angle = - 127 - self.angular_data if self.angular_data < 127 else - 127 + self.angular_data
             self.battery_flag = self.data['Battery'][self.index_in_DF]
             self.seat_belt_flag = self.data['Set Belt'][self.index_in_DF]
             self.flasher_flag = self.data['Alart'][self.index_in_DF]
@@ -133,7 +135,7 @@ class DashBoard:
 
     def __set_Data_based_on_Input(self):
         """
-        Change all the required flags to be used in the render function
+        changing the flags and angles based on the users input to be used in the render function
         :return:
         """
         self.brakes_flag = False
@@ -233,7 +235,7 @@ class DashBoard:
 
     def __render(self):
         """
-        renders needed images based on the flags data
+        renders needed images based on the flags and angle data
         :return:
         """
         self.__rotate_arrows()
@@ -287,12 +289,14 @@ class DashBoard:
         """
         engine = self.__choosing_screen()
         while True:
-            engine()
             self.__check_for_exit()
+            engine()
+            if len(self.acceleration) > self.max_sample_len:
+                self.acceleration.pop(0)
             self.__render()
             self.__check_for_warning()
             pygame.display.flip()
 
 
-s = DashBoard()
-s.start()
+dashBoard = DashBoard()
+dashBoard.start()
