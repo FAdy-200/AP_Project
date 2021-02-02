@@ -19,4 +19,5 @@ them it starts keeping only the last 100
 RUNNING INSTRUCTIONS:
 1. the code needs to be in folder that has a subfolder called Data
 2. the Data subfolder needs to have the needed images and a .csv file called sensor_data.csv with the needed data
-3. run DashBoard.py
+3. the pandas and pygame library needs to be installed
+4. run DashBoard.py
