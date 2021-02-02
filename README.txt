@@ -12,7 +12,7 @@ it can operate on two modes:
 
 the code has an acceleration attribute that has the last 100 recorded acceleration. if the total samples were less
 than 100 (it can be changed as it is the attribute max_sample_len) it takes all of them until they reach a 100
-them it starts keeping only the last 100
+then it starts keeping only the last 100
 
 * of the data that was sent to us we only used the x acceleration column
 
