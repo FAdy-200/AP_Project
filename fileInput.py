@@ -75,8 +75,7 @@ class DashBoardFileInput:
         :return: Location for each col
         """
         if self.battery_flag:
-                self.screen.blit(self.battery , (0,0))
-                #self.screen.blit(self.big_arrow, (0,0))
+            self.screen.blit(self.battery , (0,0))
         if self.seat_belt_flag:
             self.screen.blit(self.seat_belt, (0,0))
         if self.flasher_flag:

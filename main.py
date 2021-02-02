@@ -1,4 +1,4 @@
-import fileInput
+# import fileInput
 import userInput
 import pygame
 import sys
@@ -46,6 +46,6 @@ s = startingScreen()
 mode = s.start()
 if mode == "USER":
     dash_board = userInput.DashBoardUserInput()
-else:
-    dash_board = fileInput.DashBoardFileInput()
+# else:
+#     dash_board = fileInput.DashBoardFileInput()
 dash_board.start()

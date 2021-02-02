@@ -38,7 +38,7 @@ class DashBoardUserInput:
             if event.type == pygame.QUIT:   # exit the game out of the loop if closed 
                 sys.exit()
 
-    def __set_flags(self):
+    def __set_Data_based_on_Input(self):
         """
         Change all the required flags to be used in the render function
         :param event:
@@ -160,7 +160,7 @@ class DashBoardUserInput:
 
 def rotate(surface, angle, pivot, offset):
     rotated_image = pygame.transform.rotozoom(surface, -angle,1)  # Rotate the image.
-    rotated_offset = offset.rotate(angle)  # Rotate the offset vector.
+    rotated_offset = offset.__rotate_surface(angle,,,  # Rotate the offset vector.
     # Add the offset vector to the center/pivot point to shift the rect.
     rect = rotated_image.get_rect(center=pivot)
     return rotated_image, rect  # Return the rotated image and shifted rect.

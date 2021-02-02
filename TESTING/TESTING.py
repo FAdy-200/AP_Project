@@ -2,12 +2,7 @@ import pygame
 import sys
 from PIL import Image
 
-# image = Image.open("Webp.net-resizeimage (15).png")
-# mode = image.mode
-# size = image.size
-# data = image.tobytes()
-#
-# py_image = pygame.image.fromstring(data, size, mode)
+
 image = pygame.image.load("~\ps\BG.png")
 w, h = image.get_size()
 image2 = pygame.image.load("~\ps\Big_Arrow.png")
