@@ -1,8 +1,6 @@
 import pygame
 import sys
 import pandas as pd
-from pandas import ExcelWriter
-from pandas import ExcelFile
 
 
 class DashBoard:
